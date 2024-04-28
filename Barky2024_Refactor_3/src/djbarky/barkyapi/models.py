@@ -43,6 +43,8 @@ class Bookmark(models.Model):
         bookmark.notes = domain_bookmark.notes
         bookmark.date_added = domain_bookmark.date_added
         bookmark.save()
+        
+        return bookmark.title #added for command_edit print(f"edit {bookmark}) 
 
     def to_domain(self) -> DomainBookmark:
         b = DomainBookmark(

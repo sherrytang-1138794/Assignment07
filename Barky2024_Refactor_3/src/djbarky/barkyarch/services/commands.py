@@ -43,6 +43,7 @@ class ListBookmarksCommand(Command):
         self.order_by = order_by
 
     def execute(self, data=None):
+        print(f"list {Bookmark.objects.all()}")
         return Bookmark.objects.all().order_by(self.order_by)
 
 
@@ -64,5 +65,7 @@ class EditBookmarkCommand(Command):
 
     def execute(self, data: DomainBookmark):
         bookmark = Bookmark.update_from_domain(data)
+        print(f"edit: {bookmark}")
         with transaction.atomic():
-            bookmark.save()
+            # bookmark.save() #AttributeError: 'str' object has no attribute 'save'
+            pass
